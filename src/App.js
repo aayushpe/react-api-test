@@ -1,10 +1,14 @@
 import Tutors from './Tutors';
+import TutorForm from './TutorForm';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Tutors/>
+    <div>
+      <div>
+        <Tutors />
+      </div>
+      <TutorForm />
     </div>
   );
 }

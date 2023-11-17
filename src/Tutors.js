@@ -27,6 +27,7 @@ class Tutors extends Component {
         {listofTutors.map((tutor) => (
           <div key={tutor.id}>
             <TutorCard
+              id = {tutor._id}
               username={tutor.username}
               rating={tutor.rating}
               description={tutor.description}

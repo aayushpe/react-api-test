@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Axios } from 'axios';
 
 class TutorCard extends Component {
   constructor(props) {
@@ -7,6 +8,21 @@ class TutorCard extends Component {
     // Define the url variable within the class constructor
     this.url = `https://robohash.org/${this.props.username}.png?set=set4`;
   }
+
+  handleDelete = async () => {
+    const { id } = this.props;
+
+    try {
+      // Make a DELETE request to your API endpoint with the user id
+      await Axios.delete(`http://localhost:3500/users/${id}`);
+
+      // Assuming you have a function to update the list of tutors in the parent component
+      // This function should refetch the tutor data or update the state to reflect the deletion
+      this.props.onDelete(id);
+    } catch (error) {
+      console.error('Error deleting tutor:', error);
+    }
+  };
   
   render() { 
     return (
@@ -20,6 +36,7 @@ class TutorCard extends Component {
                 <h1>{this.props.username}</h1>
                 <h3>Rating: {this.props.rating} Stars</h3>
                 <p>{this.props.description}</p>
+                <button onClick={this.handleDelete}>Delete</button>
               </div>
             </div>
           </div>
